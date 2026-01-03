@@ -44,4 +44,10 @@ h6 {
   .max-width {
     @apply xl:max-w-[100rem] xl:mx-auto;
   }
+  .custom-flex {
+    @apply flex items-center justify-between;
+  }
+  .plain-flex {
+    @apply flex items-center;
+  }
 }
