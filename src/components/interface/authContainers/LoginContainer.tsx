@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import phoneImg from "@/assets/images/xxx.png";
-import clouds from "@/assets/images/sky.jpg";
-import gradient from "@/assets/images/blurry-gradient.svg";
-import collaboration from "@/assets/images/collaboration.svg";
+import clouds from "@/assets/images/sky2.jpg";
+import avatar1 from "@/assets/images/avatar1.svg";
+import avatar2 from "@/assets/images/avatar2.svg";
+import chatImg from "@/assets/images/chat-img.png";
 import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
 import googleIcon from "@/assets/images/google-icon.svg";
@@ -69,35 +70,66 @@ export default function LoginContainer() {
         </div>
       </div>
 
-      <div className="overflow-hidden py-35 px-20 relative p-2 bg-primary">
-        <div className="relative z-3 text-center">
+      <div className="overflow-hidden py-35 relative p-2 bg-primary">
+        <div className="relative z-3 text-center w-[70%] mx-auto">
           <h1 className="text-white font-medium text-[1.7rem]">
             Connect with anyone, anywhere.
           </h1>
-          <p className="text-gray-200 text-small mb-12">
+          <p className="text-gray-100 text-small mb-12">
             Experience seamless conversations with real-time messaging. <br />{" "}
             Stay connected with the people that matter most.
           </p>
-          {/* <div className="flex gap-5">
-            <Image className="w-35" src={phoneImg} alt="image of a phone" />
-          </div> */}
 
-          <div className="rounded-lg bg-black/20 backdrop-blur-sm overflow-hidden">
-            <div className="bg-[#E9E9E9] h-9 mb-6 plain-flex gap-3 px-3">
+          <div className="rounded-xl relative bg-black/20 shadow-lg backdrop-blur-sm pb-5">
+            <Image
+              draggable={false}
+              className="w-35 absolute -right-15 top-3 -scale-x-100"
+              src={chatImg}
+              alt="chat 3d icon"
+            />
+            <Image
+              draggable={false}
+              className="w-35 absolute bottom-10 -left-15"
+              src={chatImg}
+              alt="chat 3d icon"
+            />
+
+            <div className="rounded-tr-lg rounded-tl-lg bg-[#E9E9E9] h-9 mb-6 plain-flex gap-3 px-5">
               <span className="w-3 h-3 rounded-full bg-[#FC5C58]"></span>
               <span className="w-3 h-3 rounded-full bg-[#FDBE46]"></span>
               <span className="w-3 h-3 rounded-full bg-[#39C84D]"></span>
             </div>
 
-            <div className="h-80 px-3">
-              <div className="w-60 bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-5">
-                <span className="w-[80%] h-3 rounded-full bg-gray-300"></span>
-                <span className="w-[30%] h-3 rounded-full bg-gray-300"></span>
+            <div className="px-4">
+              <div className="relative w-60 bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-5">
+                <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-gray-300 border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -left-1">
+                  <Image className="w-8" src={avatar1} alt="male avatar" />
+                </div>
+                <span className="w-[90%] h-2 rounded-full bg-gray-200"></span>
+                <span className="w-[40%] h-2 rounded-full bg-gray-200"></span>
               </div>
-              <div className="w-60 bg-white plain-flex gap-2 rounded-xl p-3 mb-5">
-                <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-                <span className="w-3 h-3 rounded-full bg-gray-300"></span>
-                <span className="w-3 h-3 rounded-full bg-gray-300"></span>
+
+              <div className="relative w-60 ml-auto bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-6">
+                <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-gray-300 border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -right-1">
+                  <Image className="w-8" src={avatar2} alt="image of a phone" />
+                </div>
+                <span className="w-[85%] h-2 rounded-full bg-gray-200"></span>
+                <span className="w-[55%] h-2 rounded-full bg-gray-200"></span>
+                <span className="w-[25%] h-2 rounded-full bg-gray-200"></span>
+              </div>
+
+              <div className="bg-white/20 rounded-lg px-3 custom-flex">
+                <div className="plain-flex gap-2 py-4">
+                  <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+                  <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+                  <span className="w-20 h-2 rounded-full bg-gray-300"></span>
+                </div>
+                <div className="">
+                  <Icon
+                    icon="material-symbols:send-rounded"
+                    className="text-[1.6rem] text-white"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -105,7 +137,7 @@ export default function LoginContainer() {
         <Image
           className="absolute inset-0 w-full h-full object-cover"
           src={clouds}
-          alt="gradient image"
+          alt="image of clouds and sea"
         />
       </div>
     </main>
