@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 import googleIcon from "@/assets/images/google-icon.svg";
 import Link from "next/link";
 
-export default function LoginContainer() {
+export default function SignupContainer() {
   return (
     <main className="font-sans min-h-screen grid grid-cols-2 bg-[#F9FAFB]">
       <div className="flex flex-col justify-center">
@@ -23,7 +23,7 @@ export default function LoginContainer() {
             custom={0}
             className="text-black text-center font-semibold text-[1.3rem] mb-1"
           >
-            Welcome back!
+            Create an account
           </motion.h1>
           <motion.p
             initial="init"
@@ -34,7 +34,7 @@ export default function LoginContainer() {
             custom={0.5}
             className="text-gray-600 mb-6 text-center text-smaller"
           >
-            Sign in to continue your conversations.
+            Join users and start chatting.
           </motion.p>
 
           <form action="" className="mb-5">
@@ -133,11 +133,11 @@ export default function LoginContainer() {
       <div className="overflow-hidden flex flex-col justify-center relative p-2">
         <div className="relative z-3 text-center w-[70%] mx-auto">
           <h1 className="text-white leading-7.5 mb-3 font-medium text-[1.7rem]">
-            Connect with anyone, anywhere.
+            Start your journey today.
           </h1>
           <p className="text-gray-100 text-small mb-12">
-            Experience seamless conversations with real-time messaging. <br />{" "}
-            Stay connected with the people that matter most.
+            Create your free account and discover a new way to connect <br /> with
+            friends, family, and colleagues around the world.
           </p>
 
           <div className="rounded-xl relative bg-black/30 w-[86%] 2xl:w-100 mx-auto shadow-sm border- pb-5">

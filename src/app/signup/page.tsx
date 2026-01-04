@@ -1,7 +1,5 @@
+import SignupContainer from "@/components/interface/authContainers/SignupContainer";
+
 export default function page() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <SignupContainer />;
 }
