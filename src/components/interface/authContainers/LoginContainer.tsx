@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import phoneImg from "@/assets/images/xxx.png";
-import clouds from "@/assets/images/sky2.jpg";
+import clouds from "@/assets/images/sky.jpg";
 import avatar1 from "@/assets/images/avatar1.svg";
 import avatar2 from "@/assets/images/avatar2.svg";
 import chatImg from "@/assets/images/chat-img.png";
@@ -11,9 +10,9 @@ import googleIcon from "@/assets/images/google-icon.svg";
 
 export default function LoginContainer() {
   return (
-    <main className="font-sans min-h-screen max-width grid grid-cols-2 bg-white">
-      <div className="py-35">
-        <div className="w-[60%] mx-auto">
+    <main className="font-sans min-h-screen grid grid-cols-2 bg-[#F9FAFB]">
+      <div className="flex flex-col justify-center">
+        <div className="w-[50%] mx-auto 2xl:w-100">
           <motion.h1
             initial="init"
             whileInView="slide"
@@ -32,25 +31,41 @@ export default function LoginContainer() {
               once: true,
             }}
             custom={0.5}
-            className="text-text-gray mb-3 text-center text-smaller"
+            className="text-text-gray mb-6 text-center text-smaller"
           >
             Enter your credentials to continue your conversations.
           </motion.p>
-          {/* <div className="mb-4">
-            <motion.button
-              initial="init"
-              whileInView="slide"
-              viewport={{
-                once: true,
-              }}
-              custom={1}
-              className="plain-flex mb-4 justify-center gap-3 py-2 w-full border-[0.1em] border-[#cbcbcb] rounded-lg"
-            >
-              <Image className="w-5" src={googleIcon} alt="google icon" />
-              <p className="text-smaller font-medium text-black">
-                Log in with Google
-              </p>
-            </motion.button>
+
+          <form action="" className="mb-5">
+            <div className="flex flex-col gap-1 mb-5">
+              <label className="text-smaller font-medium" htmlFor="email">
+                Email address
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+              />
+            </div>
+            <div className="flex flex-col gap-1 mb-5">
+              <label className="text-smaller font-medium" htmlFor="email">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+              />
+            </div>
+
+            <button className="w-full py-2 bg-[#1DAFA1] border-[#1DAFA1] border-[0.1em] text-small text-white rounded-lg font-medium">
+              Sign in
+            </button>
+          </form>
+
+          <div className="mb-4">
             <motion.div
               initial="init"
               whileInView="slide"
@@ -58,21 +73,46 @@ export default function LoginContainer() {
                 once: true,
               }}
               custom={1.5}
-              className="flex items-center gap-3"
+              className="flex items-center gap-3 mb-5"
             >
-              <span className="h-[0.08em] bg-[#cbcbcb] flex-1"></span>
-              <p className="text-smaller text-black">or continue with</p>
-              <span className="h-[0.08em] bg-[#cbcbcb] flex-1"></span>
+              <span className="h-[0.08em] bg-[#e1e1e1] flex-1"></span>
+              <p className="text-smaller text-gray-600">or continue with</p>
+              <span className="h-[0.08em] bg-[#e1e1e1] flex-1"></span>
             </motion.div>
-          </div> */}
 
-          <form action=""></form>
+            <div className="custom-flex gap-4">
+              <motion.button
+                initial="init"
+                whileInView="slide"
+                viewport={{
+                  once: true,
+                }}
+                custom={1}
+                className="plain-flex mb-4 justify-center gap-2 py-2 w-full border-[0.05em] border-[#d3d3d3] rounded-lg"
+              >
+                <Image className="w-5" src={googleIcon} alt="google icon" />
+                <p className="text-smaller font-medium text-black">Google</p>
+              </motion.button>
+              <motion.button
+                initial="init"
+                whileInView="slide"
+                viewport={{
+                  once: true,
+                }}
+                custom={1}
+                className="plain-flex mb-4 justify-center gap-2 py-2 w-full border-[0.05em] border-[#d3d3d3] rounded-lg"
+              >
+                <Image className="w-5" src={googleIcon} alt="google icon" />
+                <p className="text-smaller font-medium text-black">Google</p>
+              </motion.button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="overflow-hidden py-35 relative p-2 bg-primary">
+      <div className="overflow-hidden flex flex-col justify-center relative p-2">
         <div className="relative z-3 text-center w-[70%] mx-auto">
-          <h1 className="text-white font-medium text-[1.7rem]">
+          <h1 className="text-white leading-7.5 mb-3 font-medium text-[1.7rem]">
             Connect with anyone, anywhere.
           </h1>
           <p className="text-gray-100 text-small mb-12">
@@ -80,7 +120,7 @@ export default function LoginContainer() {
             Stay connected with the people that matter most.
           </p>
 
-          <div className="rounded-xl relative bg-black/20 shadow-lg backdrop-blur-sm pb-5">
+          <div className="rounded-xl relative bg-black/30 w-[86%] 2xl:w-100 mx-auto shadow-sm border- pb-5">
             <Image
               draggable={false}
               className="w-35 absolute -right-15 top-3 -scale-x-100"
@@ -101,21 +141,37 @@ export default function LoginContainer() {
             </div>
 
             <div className="px-4">
-              <div className="relative w-60 bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-5">
-                <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-gray-300 border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -left-1">
-                  <Image className="w-8" src={avatar1} alt="male avatar" />
+              <div className="mb-3">
+                <div className="mb-3 relative w-60 bg-[#E9E9E9] plain-flex flex-col items-start gap-2 rounded-xl p-3">
+                  <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-[#c1c5cb] border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -left-1">
+                    <Image className="w-7.5" src={avatar1} alt="male avatar" />
+                  </div>
+                  <span className="w-[90%] h-2 rounded-full bg-[#c1c5cb]"></span>
+                  <span className="w-[40%] h-2 rounded-full bg-[#c1c5cb]"></span>
                 </div>
-                <span className="w-[90%] h-2 rounded-full bg-gray-200"></span>
-                <span className="w-[40%] h-2 rounded-full bg-gray-200"></span>
+                <Icon
+                  icon="icon-park-outline:check-one"
+                  className="text-[1rem] text-[#c1c5cb]"
+                />
               </div>
 
-              <div className="relative w-60 ml-auto bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-6">
-                <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-gray-300 border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -right-1">
-                  <Image className="w-8" src={avatar2} alt="image of a phone" />
+              <div className="mb-4">
+                <div className="relative w-60 ml-auto bg-[#E9E9E9] plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-3">
+                  <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-[#c1c5cb] border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -right-1">
+                    <Image
+                      className="w-7"
+                      src={avatar2}
+                      alt="image of a phone"
+                    />
+                  </div>
+                  <span className="w-[25%] h-2 rounded-full bg-[#c1c5cb]"></span>
+                  <span className="w-[55%] h-2 rounded-full bg-[#c1c5cb]"></span>
+                  <span className="w-[85%] h-2 rounded-full bg-[#c1c5cb]"></span>
                 </div>
-                <span className="w-[85%] h-2 rounded-full bg-gray-200"></span>
-                <span className="w-[55%] h-2 rounded-full bg-gray-200"></span>
-                <span className="w-[25%] h-2 rounded-full bg-gray-200"></span>
+                <Icon
+                  icon="icon-park-outline:check-one"
+                  className="text-[1rem] text-[#c1c5cb] ml-auto"
+                />
               </div>
 
               <div className="bg-white/20 rounded-lg px-3 custom-flex">
@@ -134,11 +190,14 @@ export default function LoginContainer() {
             </div>
           </div>
         </div>
-        <Image
-          className="absolute inset-0 w-full h-full object-cover"
-          src={clouds}
-          alt="image of clouds and sea"
-        />
+        <div className="absolute inset-0 w-full h-full">
+          <span className="absolute inset-0 w-full h-full bg-black/20"></span>
+          <Image
+            className="w-full h-full object-cover"
+            src={clouds}
+            alt="image of clouds and sea"
+          />
+        </div>
       </div>
     </main>
   );
