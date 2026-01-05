@@ -22,19 +22,19 @@ export default function IllustrationContainer({
           {description}
         </p>
 
-        <div className="rounded-xl relative bg-black/30 w-[86%] 2xl:w-100 mx-auto shadow-sm border- pb-5">
-          <Image
+        <div className="rounded-xl relative bg-black/30 w-[86%] 2xl:w-100 mx-auto shadow-sm border- pb-5 border-[0.3em] border-black/30">
+          {/* <Image
             draggable={false}
             className="w-35 absolute -right-15 top-3 -scale-x-100"
-            src={chatImg}
+            src={avatar1}
             alt="chat 3d icon"
           />
           <Image
             draggable={false}
             className="w-35 absolute bottom-10 -left-15"
-            src={chatImg}
+            src={avatar2}
             alt="chat 3d icon"
-          />
+          /> */}
 
           <div className="rounded-tr-lg rounded-tl-lg bg-[#E9E9E9] h-9 mb-6 plain-flex gap-3 px-5">
             <span className="w-3 h-3 rounded-full bg-[#FC5C58]"></span>
@@ -43,12 +43,14 @@ export default function IllustrationContainer({
           </div>
 
           <div className="px-4">
-            <div className="mb-3">
-              <div className="mb-3 relative w-60 bg-primary plain-flex flex-col items-start gap-2 rounded-xl p-3">
-                {/* <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-[#c1c5cb] border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -left-1">
-                    <Image className="w-7.5" src={avatar1} alt="male avatar" />
-                  </div> */}
+            <div className="mb-4">
+              <div className="mb-2 relative w-60 bg-primary plain-flex flex-col items-start gap-2 rounded-xl p-3">
+                <div className="flex items-end justify-center w-11 h-11 overflow-hidden bg-white border-[0.1em] border-black/80 rounded-full absolute -top-2 -left-1">
+                    <Image className="w-9" src={avatar1} alt="male avatar" />
+                  </div>
+                <span className="absolute -bottom-3 left-3 w-0 h-0 border-t-10 border-b-10 border-l-20 rotate-90 border-t-transparent border-b-transparent border-l-primary"></span>
                 <span className="w-[90%] h-1.5 rounded-full bg-white"></span>
+                <span className="w-[60%] h-1.5 rounded-full bg-white"></span>
                 <span className="w-[40%] h-1.5 rounded-full bg-white"></span>
               </div>
               <Icon
@@ -58,14 +60,15 @@ export default function IllustrationContainer({
             </div>
 
             <div className="mb-4">
-              <div className="relative w-60 ml-auto bg-primary plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-3">
-                {/* <div className="flex items-end justify-center w-9 h-9 overflow-hidden bg-[#c1c5cb] border-[0.1em] border-black/80 rounded-full absolute -bottom-2 -right-1">
+              <div className="relative w-60 ml-auto bg-primary plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-2">
+                <div className="flex items-end justify-center w-11 h-11 overflow-hidden bg-white border-[0.1em] border-black/80 rounded-full absolute -top-2 -right-1">
                     <Image
-                      className="w-7"
+                      className="w-8.5"
                       src={avatar2}
                       alt="image of a phone"
                     />
-                  </div> */}
+                  </div>
+                <span className="absolute -bottom-3 right-3 w-0 h-0 border-t-10 border-b-10 border-l-20 rotate-90 border-t-transparent border-b-transparent border-l-primary"></span>
                 <span className="w-[25%] h-1.5 rounded-full bg-white"></span>
                 <span className="w-[55%] h-1.5 rounded-full bg-white"></span>
                 <span className="w-[85%] h-1.5 rounded-full bg-white"></span>
