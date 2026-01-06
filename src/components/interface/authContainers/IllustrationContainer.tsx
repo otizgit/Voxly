@@ -63,7 +63,7 @@ export default function IllustrationContainer({
             </div>
 
             <div className="mb-8">
-              <div className="relative w-60 ml-auto bg-primary plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-2">
+              <div className="relative w-60 ml-auto bg-white plain-flex flex-col items-start gap-2 rounded-xl p-3 mb-2">
                 <div className="flex items-end justify-center w-11 h-11 overflow-hidden bg-white border-[0.1em] border-black/80 rounded-full absolute -top-2 -right-1 z-1">
                   <Image
                     className="w-8.5"
@@ -71,10 +71,10 @@ export default function IllustrationContainer({
                     alt="image of a phone"
                   />
                 </div>
-                <span className="absolute -bottom-3 right-3 w-0 h-0 border-t-10 border-b-20 border-r-25 border-t-transparent border-b-transparent border-r-primary"></span>
-                <span className="w-[25%] h-1.5 rounded-full bg-white"></span>
-                <span className="w-[55%] h-1.5 rounded-full bg-white"></span>
-                <span className="w-[85%] h-1.5 rounded-full bg-white"></span>
+                <span className="absolute -bottom-3 right-3 w-0 h-0 border-t-10 border-b-20 border-r-25 border-t-transparent border-b-transparent border-r-white"></span>
+                <span className="w-[25%] h-1.5 rounded-full bg-primary"></span>
+                <span className="w-[55%] h-1.5 rounded-full bg-primary"></span>
+                <span className="w-[85%] h-1.5 rounded-full bg-primary"></span>
               </div>
             </div>
 

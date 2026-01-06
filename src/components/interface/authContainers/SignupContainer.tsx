@@ -23,9 +23,7 @@ export default function SignupContainer() {
               icon="fluent:chat-multiple-28-filled"
               className="text-primary text-[1.6rem]"
             />
-            <p className="font-semibold text-black">
-              Chat<span className="text-primary">App</span>
-            </p>
+            <p className="font-semibold text-black">Chadda</p>
           </div>
 
           <motion.h1
@@ -61,7 +59,7 @@ export default function SignupContainer() {
                 id="fullname"
                 placeholder="Enter your full name"
                 onChange={(e) => setFullName(e.target.value.trim())}
-                className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
               />
             </div>
             <div className="flex flex-col gap-1 mb-5">
@@ -73,7 +71,7 @@ export default function SignupContainer() {
                 id="email"
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value.trim())}
-                className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
               />
             </div>
             <div className="flex flex-col gap-1 mb-5">
@@ -88,7 +86,7 @@ export default function SignupContainer() {
                   id="password"
                   placeholder="Create a password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
                 />
                 <button
                   onClick={() => setPasswordView((prev) => !prev)}
@@ -118,7 +116,7 @@ export default function SignupContainer() {
                   id="confirm-password"
                   placeholder="Confirm your password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
                 />
                 <button
                   onClick={() => setConfirmPasswordView((prev) => !prev)}

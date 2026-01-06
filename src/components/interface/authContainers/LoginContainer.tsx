@@ -21,7 +21,7 @@ export default function LoginContainer() {
               className="text-primary text-[1.6rem]"
             />
             <p className="font-semibold text-black">
-              Chat<span className="text-primary">App</span>
+              Chadda
             </p>
           </div>
 
@@ -59,7 +59,7 @@ export default function LoginContainer() {
                 id="email"
                 onChange={(e) => setEmail(e.target.value.trim())}
                 placeholder="Enter your email"
-                className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
               />
             </div>
             <div className="flex flex-col gap-1 mb-5">
@@ -81,7 +81,7 @@ export default function LoginContainer() {
                   id="password"
                   placeholder="Enter your password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="text-small placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
                 />
                 <button
                   onClick={() => setPasswordView((prev) => !prev)}
