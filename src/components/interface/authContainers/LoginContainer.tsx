@@ -45,7 +45,7 @@ export default function LoginContainer() {
   return (
     <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#F9FAFB]">
       <div className="flex flex-col justify-center">
-        <div className="xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
+        <div className="w-[90%] md:w-[60%] xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
           <div className="plain-flex gap-2 mb-6 w-fit mx-auto">
             <Icon
               icon="fluent:chat-multiple-28-filled"
@@ -97,7 +97,7 @@ export default function LoginContainer() {
               />
 
               {errors.email && (
-                <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                <p className="text-smaller text-red-500 mt-1">{errors.email}</p>
               )}
             </div>
             <div className="flex flex-col gap-1 mb-5">
@@ -113,7 +113,7 @@ export default function LoginContainer() {
                 </button>
               </div>
               {errors.password && (
-                <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+                <p className="text-smaller text-red-500 mt-1">{errors.password}</p>
               )}
               <div className="relative">
                 <input

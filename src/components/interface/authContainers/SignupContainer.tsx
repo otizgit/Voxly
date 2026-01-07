@@ -4,9 +4,10 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import IllustrationContainer from "./IllustrationContainer";
 import { useState } from "react";
+import { signupSchema } from "../../../../lib/validation/auth";
 
 export default function SignupContainer() {
-  const [fullName, setFullName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -14,10 +15,46 @@ export default function SignupContainer() {
   const [passwordView, setPasswordView] = useState(false);
   const [confirmPasswordView, setConfirmPasswordView] = useState(false);
 
+  const [errors, setErrors] = useState<{
+    displayName?: string;
+    email?: string;
+    password?: string;
+    confirmPassword?: string;
+  }>({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = signupSchema.safeParse({
+      displayName,
+      email,
+      password,
+      confirmPassword,
+    });
+
+    if (!result.success) {
+      const fielderrors = result.error.flatten().fieldErrors;
+
+      setErrors({
+        displayName: fielderrors.displayName?.[0],
+        email: fielderrors.email?.[0],
+        password: fielderrors.password?.[0],
+        confirmPassword: fielderrors.confirmPassword?.[0],
+      });
+
+      return;
+    }
+
+    setErrors({});
+
+    const validatedData = result.data;
+    console.log("Signup data:", validatedData);
+  };
+
   return (
-    <main className="font-sans min-h-screen grid grid-cols-2 bg-[#F9FAFB]">
+    <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#F9FAFB]">
       <div className="flex flex-col justify-center py-20">
-        <div className="w-[50%] mx-auto 2xl:w-100">
+        <div className="w-[90%] md:w-[60%] xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
           <div className="plain-flex gap-2 mb-6 w-fit mx-auto">
             <Icon
               icon="fluent:chat-multiple-28-filled"
@@ -49,30 +86,49 @@ export default function SignupContainer() {
             Join Chadda and start real-time conversations.
           </motion.p>
 
-          <form action="" className="mb-5">
+          <form className="mb-5" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1 mb-5">
-              <label className="text-smaller font-medium" htmlFor="fullname">
-                Full name
+              <label
+                className="text-smaller font-medium"
+                htmlFor="display-name"
+              >
+                Display name
               </label>
               <input
+                required
                 type="text"
-                id="fullname"
-                placeholder="Enter your full name"
-                onChange={(e) => setFullName(e.target.value.trim())}
-                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                id="display-name"
+                placeholder="Enter your display name"
+                onChange={(e) => setDisplayName(e.target.value.trim())}
+                className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                  errors.displayName ? "border-red-500" : "border-[#d3d3d3]"
+                } border-[#d3d3d3]`}
               />
+
+              {errors.displayName && (
+                <p className="text-smaller text-red-500 mt-1">
+                  {errors.displayName}
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-1 mb-5">
               <label className="text-smaller font-medium" htmlFor="email">
                 Email address
               </label>
               <input
+                required
                 type="email"
                 id="email"
                 placeholder="Enter your email"
                 onChange={(e) => setEmail(e.target.value.trim())}
-                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                  errors.email ? "border-red-500" : "border-[#d3d3d3]"
+                }`}
               />
+
+              {errors.email && (
+                <p className="text-smaller text-red-500 mt-1">{errors.email}</p>
+              )}
             </div>
             <div className="flex flex-col gap-1 mb-5">
               <div className="custom-flex">
@@ -82,11 +138,14 @@ export default function SignupContainer() {
               </div>
               <div className="relative">
                 <input
+                  required
                   type={passwordView ? "text" : "password"}
                   id="password"
                   placeholder="Create a password"
                   onChange={(e) => setPassword(e.target.value)}
-                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                    errors.password ? "border-red-500" : "border-[#d3d3d3]"
+                  } w-full pr-9`}
                 />
                 <button
                   onClick={() => setPasswordView((prev) => !prev)}
@@ -103,6 +162,12 @@ export default function SignupContainer() {
                   />
                 </button>
               </div>
+
+              {errors.password && (
+                <p className="text-smaller text-red-500 mt-1">
+                  {errors.password}
+                </p>
+              )}
             </div>
             <div className="flex flex-col gap-1 mb-5">
               <div className="custom-flex">
@@ -112,11 +177,16 @@ export default function SignupContainer() {
               </div>
               <div className="relative">
                 <input
+                  required
                   type={confirmPasswordView ? "text" : "password"}
                   id="confirm-password"
                   placeholder="Confirm your password"
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                    errors.confirmPassword
+                      ? "border-red-500"
+                      : "border-[#d3d3d3]"
+                  } w-full pr-9`}
                 />
                 <button
                   onClick={() => setConfirmPasswordView((prev) => !prev)}
@@ -133,6 +203,12 @@ export default function SignupContainer() {
                   />
                 </button>
               </div>
+
+              {errors.confirmPassword && (
+                <p className="text-smaller text-red-500 mt-1">
+                  {errors.confirmPassword}
+                </p>
+              )}
             </div>
 
             <button className="w-full py-2 bg-primary border-primary border-[0.1em] text-small text-white rounded-lg font-medium">
