@@ -46,7 +46,7 @@ export default function SignupContainer() {
             custom={0.5}
             className="text-gray-600 mb-6 text-center text-smaller"
           >
-            Join users and start chatting.
+            Join Chadda and start real-time conversations.
           </motion.p>
 
           <form action="" className="mb-5">
@@ -94,7 +94,7 @@ export default function SignupContainer() {
                   className="top-0 bottom-0 rounded-md grid place-items-center text-[1.2rem] absolute px-2 right-0"
                 >
                   <Icon
-                    className="text-black"
+                    className="text-[#636363]"
                     icon={
                       passwordView
                         ? "iconoir:eye-closed"
@@ -124,7 +124,7 @@ export default function SignupContainer() {
                   className="top-0 bottom-0 rounded-md grid place-items-center text-[1.2rem] absolute px-2 right-0"
                 >
                   <Icon
-                    className="text-black"
+                    className="text-[#636363]"
                     icon={
                       confirmPasswordView
                         ? "iconoir:eye-closed"

@@ -93,7 +93,7 @@ export default function IllustrationContainer({
         </div>
       </div>
       <div className="absolute inset-0 w-full h-full">
-        <span className="absolute inset-0 w-full h-full bg-black/20"></span>
+        <span className="absolute inset-0 w-full h-full bg-black/35"></span>
         <Image
           className="w-full h-full object-cover"
           src={clouds}

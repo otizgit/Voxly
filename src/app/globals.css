@@ -44,6 +44,9 @@ h6 {
 .custom-shadow3 {
   box-shadow: 0px 0px 3px 3px rgba(133, 133, 133, 0.06);
 }
+.custom-shadow3:hover {
+  box-shadow: 0px 0px 3px 3px #1dafa022;
+}
 
 @layer components {
   .max-width {

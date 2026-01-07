@@ -20,9 +20,7 @@ export default function LoginContainer() {
               icon="fluent:chat-multiple-28-filled"
               className="text-primary text-[1.6rem]"
             />
-            <p className="font-semibold text-black">
-              Chadda
-            </p>
+            <p className="font-semibold text-black">Chadda</p>
           </div>
 
           <motion.h1
@@ -34,7 +32,7 @@ export default function LoginContainer() {
             custom={0}
             className="text-black text-center font-semibold text-[1.4rem] mb-1"
           >
-            Welcome back!
+            Welcome back to Chadda
           </motion.h1>
           <motion.p
             initial="init"
@@ -86,6 +84,8 @@ export default function LoginContainer() {
                 <button
                   onClick={() => setPasswordView((prev) => !prev)}
                   type="button"
+                  aria-label={passwordView ? "Hide password" : "Show password"}
+                  aria-pressed={passwordView}
                   className="top-0 bottom-0 rounded-md grid place-items-center text-[1.2rem] absolute px-2 right-0"
                 >
                   <Icon

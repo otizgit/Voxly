@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ChatApp",
+  title: "Chadda",
   description: "A chat app built with Next.js, TypeScript and Tailwind CSS",
 };
 
