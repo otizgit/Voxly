@@ -14,12 +14,12 @@ export default function IllustrationContainer({
   description: string;
 }) {
   return (
-    <div className="overflow-hidden flex flex-col justify-center relative p-2 bg-primary">
-      <div className="relative z-3 text-center w-[70%] mx-auto">
+    <div className="hidden lg:flex overflow-hidden flex-col justify-center relative p-2 bg-primary">
+      <div className="relative z-3 text-center lg:w-[85%] xl:w-[70%] mx-auto">
         <h1 className="text-white leading-7.5 mb-1 font-semibold text-[1.4rem]">
           {title}
         </h1>
-        <p className="text-gray-100 text-small mb-8 w-100 mx-auto">
+        <p className="text-gray-100 text-small mb-8 xl:w-100 mx-auto">
           {description}
         </p>
 

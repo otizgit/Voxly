@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import IllustrationContainer from "./IllustrationContainer";
+import { loginSchema } from "../../../../lib/validation/auth";
 
 export default function LoginContainer() {
   const [email, setEmail] = useState("");
@@ -11,10 +12,40 @@ export default function LoginContainer() {
   const [loading, setLoading] = useState(false);
   const [passwordView, setPasswordView] = useState(false);
 
+  const [errors, setErrors] = useState<{
+    email?: string;
+    password?: string;
+  }>({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = loginSchema.safeParse({
+      email,
+      password,
+    });
+
+    if (!result.success) {
+      const fieldErrors = result.error.flatten().fieldErrors;
+
+      setErrors({
+        email: fieldErrors.email?.[0],
+        password: fieldErrors.password?.[0],
+      });
+
+      return;
+    }
+
+    setErrors({});
+
+    const validatedData = result.data;
+    console.log("Login data:", validatedData);
+  };
+
   return (
-    <main className="font-sans min-h-screen grid grid-cols-2 bg-[#F9FAFB]">
+    <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#F9FAFB]">
       <div className="flex flex-col justify-center">
-        <div className="w-[50%] mx-auto 2xl:w-100">
+        <div className="xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
           <div className="plain-flex gap-2 mb-6 w-fit mx-auto">
             <Icon
               icon="fluent:chat-multiple-28-filled"
@@ -46,7 +77,7 @@ export default function LoginContainer() {
             Sign in to continue your conversations.
           </motion.p>
 
-          <form action="" className="mb-5">
+          <form className="mb-5" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1 mb-5">
               <label className="text-smaller font-medium" htmlFor="email">
                 Email address
@@ -55,10 +86,19 @@ export default function LoginContainer() {
                 required
                 type="email"
                 id="email"
-                onChange={(e) => setEmail(e.target.value.trim())}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setErrors((prev) => ({ ...prev, email: undefined }));
+                }}
                 placeholder="Enter your email"
-                className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3]"
+                className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                  errors.email ? "border-red-500" : "border-[#d3d3d3]"
+                }`}
               />
+
+              {errors.email && (
+                <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+              )}
             </div>
             <div className="flex flex-col gap-1 mb-5">
               <div className="custom-flex">
@@ -72,14 +112,22 @@ export default function LoginContainer() {
                   Forgot password?
                 </button>
               </div>
+              {errors.password && (
+                <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+              )}
               <div className="relative">
                 <input
                   required
                   type={passwordView ? "text" : "password"}
                   id="password"
                   placeholder="Enter your password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] border-[#d3d3d3] w-full pr-9"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setErrors((prev) => ({ ...prev, password: undefined }));
+                  }}
+                  className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                    errors.password ? "border-red-500" : "border-[#d3d3d3]"
+                  } w-full pr-9`}
                 />
                 <button
                   onClick={() => setPasswordView((prev) => !prev)}
