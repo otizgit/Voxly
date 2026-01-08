@@ -9,10 +9,7 @@ import { generateUniqueUsername } from "../../../../../lib/auth/username";
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
-  console.log("Signup route called");
-  
   const body = await req.json();
-
   const result = signupSchema.safeParse(body);
 
   if (!result.success) {

@@ -61,6 +61,7 @@ export default function SignupContainer() {
           displayName: displayName.trim(),
           email,
           password,
+          confirmPassword,
         }),
       });
 
@@ -243,7 +244,9 @@ export default function SignupContainer() {
             </div>
 
             <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center rounded-lg font-medium">
-              <p className="text-small text-white">{loading ? "Creating account..." : "Create account"}</p>
+              <p className="text-small text-white">
+                {loading ? "Creating account..." : "Create account"}
+              </p>
               {loading && (
                 <Icon
                   icon="line-md:loading-alt-loop"
