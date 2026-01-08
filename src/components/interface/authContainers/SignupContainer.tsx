@@ -5,6 +5,7 @@ import Link from "next/link";
 import IllustrationContainer from "./IllustrationContainer";
 import { useState } from "react";
 import { signupSchema } from "../../../../lib/validation/auth";
+import { redirect } from "next/navigation";
 
 export default function SignupContainer() {
   const [displayName, setDisplayName] = useState("");
@@ -22,7 +23,7 @@ export default function SignupContainer() {
     confirmPassword?: string;
   }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const result = signupSchema.safeParse({
@@ -46,6 +47,33 @@ export default function SignupContainer() {
     }
 
     setErrors({});
+
+    try {
+      const response = await fetch("api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          displayName,
+          email,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        setDisplayName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+
+        redirect("/chats");
+      } else {
+        throw new Error("Signup failed");
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+    }
 
     const validatedData = result.data;
     console.log("Signup data:", validatedData);
@@ -265,7 +293,7 @@ export default function SignupContainer() {
               Already have an account?{" "}
               <span>
                 <Link
-                  href="/signup"
+                  href="/login"
                   className="text-primary text-smaller font-medium"
                 >
                   Sign in
