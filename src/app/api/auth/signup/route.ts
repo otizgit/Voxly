@@ -1,9 +1,16 @@
+export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-import { prisma } from "../../../../../lib/prisma";
+// import { prisma } from "../../../../../lib/prisma";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "../../../../../lib/validation/auth";
+import { generateUniqueUsername } from "../../../../../lib/auth/username";
+
+const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
+  console.log("Signup route called");
+  
   const body = await req.json();
 
   const result = signupSchema.safeParse(body);
@@ -33,16 +40,30 @@ export async function POST(req: Request) {
 
   const hashedPassword = await bcrypt.hash(password, 12);
 
-  const user = await prisma.user.create({
-    data: {
-      displayName,
-      email,
-      password: hashedPassword,
-    },
-  });
+  const username = await generateUniqueUsername(displayName);
 
-  return NextResponse.json(
-    { message: "User created successfully", userId: user.id },
-    { status: 201 }
-  );
+  try {
+    const user = await prisma.user.create({
+      data: {
+        displayName,
+        username,
+        email,
+        password: hashedPassword,
+      },
+    });
+
+    return NextResponse.json(
+      { message: "User created successfully", userId: user.id },
+      { status: 201 }
+    );
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      return NextResponse.json(
+        { message: "Username collision, please retry" },
+        { status: 409 }
+      );
+    }
+
+    throw error;
+  }
 }

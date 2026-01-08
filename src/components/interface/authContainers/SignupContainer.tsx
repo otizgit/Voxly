@@ -5,9 +5,10 @@ import Link from "next/link";
 import IllustrationContainer from "./IllustrationContainer";
 import { useState } from "react";
 import { signupSchema } from "../../../../lib/validation/auth";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function SignupContainer() {
+  const router = useRouter();
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +26,8 @@ export default function SignupContainer() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setLoading(true);
 
     const result = signupSchema.safeParse({
       displayName,
@@ -55,7 +58,7 @@ export default function SignupContainer() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          displayName,
+          displayName: displayName.trim(),
           email,
           password,
         }),
@@ -67,16 +70,16 @@ export default function SignupContainer() {
         setPassword("");
         setConfirmPassword("");
 
-        redirect("/chats");
+        router.push("/chats");
       } else {
         throw new Error("Signup failed");
       }
     } catch (err) {
       console.error("Signup error:", err);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
-
-    const validatedData = result.data;
-    console.log("Signup data:", validatedData);
   };
 
   return (
@@ -239,8 +242,14 @@ export default function SignupContainer() {
               )}
             </div>
 
-            <button className="w-full py-2 bg-primary border-primary border-[0.1em] text-small text-white rounded-lg font-medium">
-              Create account
+            <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center rounded-lg font-medium">
+              <p className="text-small text-white">{loading ? "Creating account..." : "Create account"}</p>
+              {loading && (
+                <Icon
+                  icon="line-md:loading-alt-loop"
+                  className="text-[1.2rem] text-white"
+                />
+              )}
             </button>
           </form>
 
