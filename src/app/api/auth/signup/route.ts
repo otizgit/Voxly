@@ -1,12 +1,9 @@
 export const runtime = "nodejs";
 import { NextResponse } from "next/server";
-// import { prisma } from "../../../../../lib/prisma";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../../../lib/prisma";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "../../../../../lib/validation/auth";
 import { generateUniqueUsername } from "../../../../../lib/auth/username";
-
-const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -49,10 +46,22 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(
-      { message: "User created successfully", userId: user.id },
+    const response = NextResponse.json(
+      {
+        message: "Account created successfully. Redirecting...",
+        user: { userId: user.id, email: user.email },
+      },
       { status: 201 }
     );
+
+    response.cookies.set("user_id", user.id, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 14,
+      sameSite: "lax",
+    });
+
+    return response;
   } catch (error: any) {
     if (error.code === "P2002") {
       return NextResponse.json(
