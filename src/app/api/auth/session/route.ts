@@ -7,6 +7,8 @@ export async function GET() {
   const cookieStore = await cookies();
   const sessionToken = cookieStore.get("session_token")?.value;
 
+  console.log("Session check - token:", sessionToken ? "exists" : "missing");
+
   if (!sessionToken) {
     return NextResponse.json({ valid: false }, { status: 401 });
   }
