@@ -65,11 +65,15 @@ export default function SignupContainer() {
         }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setDisplayName("");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
+
+        console.log(data.message);
 
         router.push("/chats");
       } else {

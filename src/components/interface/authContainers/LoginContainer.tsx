@@ -56,6 +56,8 @@ export default function LoginContainer() {
         setEmail("");
         setPassword("");
 
+        console.log(data.message);
+
         router.push("/chats");
       }
     } catch (error) {
@@ -71,7 +73,7 @@ export default function LoginContainer() {
 
   return (
     <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#F9FAFB]">
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center py-20">
         <div className="w-[90%] md:w-[60%] xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
           <div className="plain-flex gap-2 mb-6 w-fit mx-auto">
             <Icon
