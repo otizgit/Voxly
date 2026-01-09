@@ -4,6 +4,7 @@ import { prisma } from "../../../../../lib/prisma";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "../../../../../lib/validation/auth";
 import { generateUniqueUsername } from "../../../../../lib/auth/username";
+import { createOrUpdateSession } from "../../../../../lib/auth/sessions";
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -27,7 +28,7 @@ export async function POST(req: Request) {
 
   if (existingUser) {
     return NextResponse.json(
-      { email: "Email is already registered" },
+      { message: "Email is already registered" },
       { status: 409 }
     );
   }
@@ -46,6 +47,8 @@ export async function POST(req: Request) {
       },
     });
 
+    const session = await createOrUpdateSession(user.id);
+
     const response = NextResponse.json(
       {
         message: "Account created successfully. Redirecting...",
@@ -54,7 +57,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
 
-    response.cookies.set("user_id", user.id, {
+    response.cookies.set("session_token", session.sessionToken, {
       httpOnly: true,
       path: "/",
       maxAge: 60 * 60 * 24 * 14,
