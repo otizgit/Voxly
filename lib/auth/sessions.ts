@@ -2,6 +2,10 @@ import crypto from "crypto";
 import { prisma } from "../prisma";
 import { headers } from "next/headers";
 
+export function generateSessionToken() {
+  return crypto.randomUUID();
+}
+
 function parseUserAgent(ua: string | null) {
   if (!ua) return { browser: "Unknown", device: "Unknown" };
 

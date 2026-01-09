@@ -73,7 +73,7 @@ export default function SignupContainer() {
 
         router.push("/chats");
       } else {
-        throw new Error("Signup failed");
+        throw Error("Signup failed");
       }
     } catch (err) {
       console.error("Signup error:", err);
@@ -243,8 +243,8 @@ export default function SignupContainer() {
               )}
             </div>
 
-            <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center rounded-lg font-medium">
-              <p className="text-small text-white">
+            <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center rounded-lg">
+              <p className="text-small text-white font-medium">
                 {loading ? "Creating account..." : "Create account"}
               </p>
               {loading && (

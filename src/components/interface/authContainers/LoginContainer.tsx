@@ -5,8 +5,10 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import IllustrationContainer from "./IllustrationContainer";
 import { loginSchema } from "../../../../lib/validation/auth";
+import { useRouter } from "next/navigation";
 
 export default function LoginContainer() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +19,7 @@ export default function LoginContainer() {
     password?: string;
   }>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const result = loginSchema.safeParse({
@@ -37,6 +39,31 @@ export default function LoginContainer() {
     }
 
     setErrors({});
+
+    try {
+      setLoading(true);
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setEmail("");
+        setPassword("");
+
+        router.push("/chats");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
 
     const validatedData = result.data;
     console.log("Login data:", validatedData);
@@ -113,7 +140,9 @@ export default function LoginContainer() {
                 </button>
               </div>
               {errors.password && (
-                <p className="text-smaller text-red-500 mt-1">{errors.password}</p>
+                <p className="text-smaller text-red-500 mt-1">
+                  {errors.password}
+                </p>
               )}
               <div className="relative">
                 <input
@@ -148,8 +177,16 @@ export default function LoginContainer() {
               </div>
             </div>
 
-            <button className="w-full py-2 bg-primary border-primary border-[0.1em] text-small text-white rounded-lg font-medium">
-              Sign in
+            <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center  rounded-lg">
+              <p className="text-small text-white font-medium">
+                {loading ? "Signing in..." : "Sign in "}
+              </p>
+              {loading && (
+                <Icon
+                  icon="line-md:loading-alt-loop"
+                  className="text-[1.2rem] text-white"
+                />
+              )}
             </button>
           </form>
 
