@@ -66,13 +66,10 @@ export default function LoginContainer() {
     } finally {
       setLoading(false);
     }
-
-    const validatedData = result.data;
-    console.log("Login data:", validatedData);
   };
 
   return (
-    <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#F9FAFB]">
+    <main className="font-sans min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#EFEEEC]">
       <div className="flex flex-col justify-center py-20">
         <div className="w-[90%] md:w-[60%] xl:w-[50%] lg:w-[70%] mx-auto 2xl:w-100">
           <div className="plain-flex gap-2 mb-6 w-fit mx-auto">
@@ -80,7 +77,7 @@ export default function LoginContainer() {
               icon="fluent:chat-multiple-28-filled"
               className="text-primary text-[1.6rem]"
             />
-            <p className="font-semibold text-black">Chadda</p>
+            <p className="font-medium text-[0.9rem] text-black">Chadda</p>
           </div>
 
           <motion.h1
@@ -90,7 +87,7 @@ export default function LoginContainer() {
               once: true,
             }}
             custom={0}
-            className="text-black text-center font-semibold text-[1.4rem] mb-1"
+            className="text-black text-center font-medium text-[1.2rem] mb-1"
           >
             Welcome back to Chadda
           </motion.h1>
@@ -106,10 +103,10 @@ export default function LoginContainer() {
             Sign in to continue your conversations.
           </motion.p>
 
-          <form className="mb-5" onSubmit={handleSubmit}>
+          <form className="mb-3" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-1 mb-5">
               <label className="text-smaller font-medium" htmlFor="email">
-                Email address
+                Email
               </label>
               <input
                 required
@@ -120,7 +117,7 @@ export default function LoginContainer() {
                   setErrors((prev) => ({ ...prev, email: undefined }));
                 }}
                 placeholder="Enter your email"
-                className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                className={`input-style input-shadow ${
                   errors.email ? "border-red-500" : "border-[#d3d3d3]"
                 }`}
               />
@@ -156,7 +153,7 @@ export default function LoginContainer() {
                     setPassword(e.target.value);
                     setErrors((prev) => ({ ...prev, password: undefined }));
                   }}
-                  className={`text-small custom-shadow3 placeholder:text-smaller p-2 rounded-lg bg-white border-[0.1em] ${
+                  className={`input-style input-shadow ${
                     errors.password ? "border-red-500" : "border-[#d3d3d3]"
                   } w-full pr-9`}
                 />
@@ -179,7 +176,7 @@ export default function LoginContainer() {
               </div>
             </div>
 
-            <button className="w-full py-2 bg-primary border-primary border-[0.1em] plain-flex gap-2 justify-center  rounded-lg">
+            <button className="btn-style button-shadow">
               <p className="text-small text-white font-medium">
                 {loading ? "Signing in..." : "Sign in "}
               </p>
@@ -200,11 +197,11 @@ export default function LoginContainer() {
                 once: true,
               }}
               custom={1.5}
-              className="flex items-center gap-3 mb-5"
+              className="flex items-center gap-3 mb-3"
             >
-              <span className="h-[0.08em] bg-[#e1e1e1] flex-1"></span>
+              <span className="input-shadow h-[0.08em] bg-[#e1e1e1] flex-1"></span>
               <p className="text-smaller text-gray-600">or continue with</p>
-              <span className="h-[0.08em] bg-[#e1e1e1] flex-1"></span>
+              <span className="input-shadow h-[0.08em] bg-[#e1e1e1] flex-1"></span>
             </motion.div>
 
             <div className="custom-flex gap-4">
@@ -215,10 +212,9 @@ export default function LoginContainer() {
                   once: true,
                 }}
                 custom={1}
-                className="plain-flex justify-center gap-2 py-2 w-full border-[0.05em] border-[#d3d3d3] rounded-lg"
+                className="button-shadow2 btn-style2"
               >
-                <Icon icon="akar-icons:google-fill" className="text-[1rem]" />
-                {/* <Image className="w-5" src={googleIcon} alt="google icon" /> */}
+                <Icon icon="material-icon-theme:google" className="text-[1.2rem]" />
                 <p className="text-smaller font-medium text-black">Google</p>
               </motion.button>
               <motion.button
@@ -228,9 +224,9 @@ export default function LoginContainer() {
                   once: true,
                 }}
                 custom={1}
-                className="plain-flex justify-center gap-2 py-2 w-full border-[0.05em] border-[#d3d3d3] rounded-lg"
+                className="button-shadow2 btn-style2"
               >
-                <Icon icon="akar-icons:github-fill" className="text-[1rem]" />
+                <Icon icon="akar-icons:github-fill" className="text-[1.1rem]" />
                 <p className="text-smaller font-medium text-black">GitHub</p>
               </motion.button>
             </div>
